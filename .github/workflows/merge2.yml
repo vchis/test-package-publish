@@ -12,9 +12,12 @@ jobs:
         uses: "actions/checkout@v3"
         with:
           ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge
         run: |
+          git config --global user.name 'Valeriu Chis'
+          git config --global user.email 'valeriu.chis@gmail.com'
           git fetch
           git merge origin/feat/update-readme
           git push origin main
