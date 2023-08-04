@@ -1,0 +1,27 @@
+name: Merge branch
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        type: string
+        required: true
+        description: Branch to merge
+      target:
+        type: string
+        required: true
+        description: Branch to merge into
+
+jobs:
+  merge:
+    name: Merge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: "actions/checkout@v3"
+        with:
+          ref: ${{ github.event.inputs.target }}
+
+      - name: Merge
+        run: |
+          git merge ${{ github.event.inputs.source }}
+          git push origin  ${{ github.event.inputs.target }}
