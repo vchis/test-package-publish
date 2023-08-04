@@ -1,15 +1,7 @@
 name: Merge branch
 on:
-  workflow_dispatch:
-    inputs:
-      source:
-        type: string
-        required: true
-        description: Branch to merge
-      target:
-        type: string
-        required: true
-        description: Branch to merge into
+  pull_request_review:
+    types: [dismissed, edited, submitted]
 
 jobs:
   merge:
@@ -19,9 +11,9 @@ jobs:
       - name: Checkout
         uses: "actions/checkout@v3"
         with:
-          ref: ${{ github.event.inputs.target }}
+          ref: main
 
       - name: Merge
         run: |
-          git merge ${{ github.event.inputs.source }}
-          git push origin  ${{ github.event.inputs.target }}
+          git merge feat/update-readme
+          git push origin main
