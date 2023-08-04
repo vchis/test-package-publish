@@ -15,5 +15,6 @@ jobs:
 
       - name: Merge
         run: |
-          git merge feat/update-readme
+          git fetch
+          git merge origin/feat/update-readme
           git push origin main
