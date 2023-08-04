@@ -19,5 +19,5 @@ jobs:
           git config --global user.name 'Valeriu Chis'
           git config --global user.email 'valeriu.chis@gmail.com'
           git fetch
-          git merge origin/feat/update-readme
+          git merge origin/feat/new-readme-update
           git push origin main
