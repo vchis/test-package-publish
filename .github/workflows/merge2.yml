@@ -1,0 +1,23 @@
+name: Merge branch
+on:
+  pull_request_review:
+    types: [dismissed, edited, submitted]
+
+jobs:
+  merge:
+    name: Merge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: "actions/checkout@v3"
+        with:
+          ref: main
+          token: ${{ secrets.PAT }}
+
+      - name: Merge
+        run: |
+          git config --global user.name 'Valeriu Chis'
+          git config --global user.email 'valeriu.chis@gmail.com'
+          git fetch
+          git merge origin/feat/new-readme-update
+          git push origin main
